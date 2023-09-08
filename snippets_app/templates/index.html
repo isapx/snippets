@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1>Snippets</h1>
+  <div class="row">
+    {% for snippet in snippets %}
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            {{ snippet.title }}
+            <small class="text-muted">
+              ({{ snippet.language }})
+            </small>
+          </div>
+          <div class="card-body">
+            <!-- <pre lang="python">{{ snippet.code }}</pre> -->
+            {{ snippet.code }}
+            <ul class="list-inline">
+              {% for tag in snippet.tags.all %}
+                <li class="list-inline-item">
+                  <a href="#">{{ tag.name }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
